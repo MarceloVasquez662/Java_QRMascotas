@@ -23,23 +23,23 @@ public class Listado extends javax.swing.JFrame {
      * Creates new form Listado
      */
     int xMouse, yMouse;
-
+    
     public Listado() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
         try {
             conexion x = new conexion();
             Connection cn = x.getConnection();
             Statement st = cn.createStatement();
             ResultSet rs;
-
-            rs = st.executeQuery("select nombre, nombreDueno,tipo,raza from mydb.MASCOTA where perdido=TRUE");
-
+            
+            rs = st.executeQuery("select nombre, nombreDueno,tipo,raza,ultimaUbicacion from mydb.MASCOTA where perdido=TRUE");
+            
             DefaultTableModel modeloTabla = (DefaultTableModel) table_mascotasPerdidas.getModel();
-            Object filas[] = new Object[4];
+            Object filas[] = new Object[5];
             while (rs.next()) {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 5; i++) {
                     filas[i] = rs.getObject(i + 1);
                 }
                 modeloTabla.addRow(filas);
@@ -48,7 +48,7 @@ public class Listado extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
-
+        
     }
 
     /**
@@ -70,6 +70,8 @@ public class Listado extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_mascotasPerdidas = new javax.swing.JTable();
@@ -168,7 +170,7 @@ public class Listado extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Candara", 1, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Listado de Máscotas perdidas");
+        jLabel3.setText("Listado de Mascotas perdidas");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
@@ -182,10 +184,34 @@ public class Listado extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 185, 196));
 
+        jPanel5.setBackground(new java.awt.Color(0, 102, 0));
+        jPanel5.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Encontre mi mascota");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
         jLabel2.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Te mostramos las máscota que continuan perdidas");
+        jLabel2.setText("Te mostramos las mascotas que continuan perdidas");
 
         table_mascotasPerdidas.setForeground(new java.awt.Color(51, 51, 51));
         table_mascotasPerdidas.setModel(new javax.swing.table.DefaultTableModel(
@@ -193,11 +219,11 @@ public class Listado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Dueño", "Tipo", "Raza"
+                "Nombre", "Dueño", "Tipo", "Raza", "Ultima ubicación conocida"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -219,10 +245,15 @@ public class Listado extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,8 +261,10 @@ public class Listado extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 800, 400));
@@ -254,45 +287,52 @@ public class Listado extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_cerrarMouseClicked
-
+    
     private void btn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseClicked
         // TODO add your handling code here:
         Inicio x = new Inicio();
         x.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_inicioMouseClicked
-
+    
     private void btn_inicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseEntered
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 140, 0));
     }//GEN-LAST:event_btn_inicioMouseEntered
-
+    
     private void btn_inicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseExited
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 102, 0));
     }//GEN-LAST:event_btn_inicioMouseExited
-
+    
     private void btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseEntered
         // TODO add your handling code here:
         panel_cerrar.setBackground(Color.red);
     }//GEN-LAST:event_btn_cerrarMouseEntered
-
+    
     private void btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseExited
         // TODO add your handling code here:
         panel_cerrar.setBackground(new Color(153, 0, 0));
     }//GEN-LAST:event_btn_cerrarMouseExited
-
+    
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
         int x = evt.getXOnScreen(), y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel4MouseDragged
-
+    
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel4MousePressed
+    
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Encontrada x = new Encontrada();
+        x.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -335,10 +375,12 @@ public class Listado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel_cerrar;
     private javax.swing.JPanel panel_inicio;

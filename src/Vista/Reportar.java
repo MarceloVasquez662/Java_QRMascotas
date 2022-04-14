@@ -26,14 +26,14 @@ public class Reportar extends javax.swing.JFrame {
      * Creates new form Reportar
      */
     int xMouse, yMouse;
-    
+
     public Reportar() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Reporta tu máscota");
-        
+
         combo_mascotas.setVisible(false);
-        
+
         panel_reportar.setVisible(false);
     }
 
@@ -170,6 +170,7 @@ public class Reportar extends javax.swing.JFrame {
         jLabel3.setText("Ingresa tu RUT");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 120, 30));
 
+        txt_rut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_rut.setBorder(null);
         txt_rut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_rut.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -184,7 +185,7 @@ public class Reportar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("<html><div style=\"text-align:center\"><span>Sentimos que tú <br> máscota esté <br> pérdida :(</span></div></html>");
+        jLabel2.setText("<html><div style=\"text-align:center\"><span>Sentimos que tú <br> mascota esté <br> pérdida :(</span></div></html>");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -280,51 +281,51 @@ public class Reportar extends javax.swing.JFrame {
             Toolkit.getDefaultToolkit().beep();
         }
     }//GEN-LAST:event_txt_rutKeyTyped
-    
+
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel4MousePressed
-    
+
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
         int x = evt.getXOnScreen(), y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel4MouseDragged
-    
+
     private void btn_cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_cerrarMouseClicked
-    
+
     private void btn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseClicked
         // TODO add your handling code here:
         Inicio x = new Inicio();
         x.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_inicioMouseClicked
-    
+
     private void btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseEntered
         // TODO add your handling code here:
         panel_cerrar.setBackground(Color.red);
     }//GEN-LAST:event_btn_cerrarMouseEntered
-    
+
     private void btn_inicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseEntered
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 140, 0));
     }//GEN-LAST:event_btn_inicioMouseEntered
-    
+
     private void btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseExited
         // TODO add your handling code here:
         panel_cerrar.setBackground(new Color(204, 0, 0));
     }//GEN-LAST:event_btn_cerrarMouseExited
-    
+
     private void btn_inicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseExited
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 102, 0));
     }//GEN-LAST:event_btn_inicioMouseExited
-    
+
     private void btn_buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_buscarMouseClicked
         // TODO add your handling code here:
         Pattern pattern = Pattern.compile("^[0-9]+-[0-9kK]{1}$");
@@ -335,22 +336,22 @@ public class Reportar extends javax.swing.JFrame {
             String[] stringRut = txt_rut.getText().split("-");
             String rut = stringRut[0];
             String verificador = stringRut[1].toLowerCase();
-            
+
             Integer M = 0, S = 1, T = Integer.parseInt(rut);
             for (; T != 0; T = (int) Math.floor(T /= 10)) {
                 S = (S + T % 10 * (9 - M++ % 6)) % 11;
             }
-            
+
             String verificadorBueno;
             if (S > 0) {
                 verificadorBueno = String.valueOf(S - 1);
             } else {
                 verificadorBueno = "k";
             }
-            
+
             if (!verificador.equals(verificadorBueno)) {
                 JOptionPane.showMessageDialog(null, "El digito verificador del RUT es inválido", "Error", JOptionPane.WARNING_MESSAGE);
-                
+
             } else {
                 try {
                     combo_mascotas.setVisible(false);
@@ -360,14 +361,14 @@ public class Reportar extends javax.swing.JFrame {
                     Statement st = cn.createStatement();
                     ResultSet rs;
                     rs = st.executeQuery("select idMASCOTA,nombre from mydb.MASCOTA where rutDueno='" + txt_rut.getText() + "' and perdido=FALSE");
-                    
+
                     combo_mascotas.removeAllItems();
-                    
+
                     if (rs.next()) {
                         combo_mascotas.setVisible(true);
                         panel_reportar.setVisible(true);
                         btn_reportar.setVisible(true);
-                        
+
                         combo_mascotas.addItem("Seleccione una máscota");
                         rs.beforeFirst();
                         while (rs.next()) {
@@ -382,13 +383,13 @@ public class Reportar extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_buscarMouseClicked
-    
+
     private void btn_reportarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reportarMouseClicked
         // TODO add your handling code here:
         if (combo_mascotas.getSelectedItem().equals("Seleccione una máscota")) {
             JOptionPane.showMessageDialog(null, "Debes seleccionar una máscota", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            
+
             String[] mascota = combo_mascotas.getSelectedItem().toString().split("-");
             int idMascota = Integer.parseInt(mascota[0]);
             try {
@@ -396,7 +397,7 @@ public class Reportar extends javax.swing.JFrame {
                 Connection cn = x.getConnection();
                 Statement st = cn.createStatement();
                 int i = st.executeUpdate("update mydb.MASCOTA set perdido=TRUE where idMASCOTA=" + idMascota + "");
-                JOptionPane.showMessageDialog(null, "Lamentamos tu pérdida :( tu mascota esta en la lista de máscotas perdidas", ":(", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Lamentamos tu pérdida :( tu mascota esta en la lista de mascotas perdidas", ":(", JOptionPane.INFORMATION_MESSAGE);
                 combo_mascotas.setVisible(false);
                 panel_reportar.setVisible(false);
                 txt_rut.setText("");

@@ -10,12 +10,17 @@ import java.util.regex.Pattern;
 import Vista.Inicio;
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.ByteArrayOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 import qrmascota.conexion;
 
 /**
@@ -93,7 +98,7 @@ public class Agregar extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 570));
 
-        jPanel2.setBackground(new java.awt.Color(190, 210, 254));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -129,7 +134,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel5.setText("Fecha Nac.");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 244, -1, -1));
 
-        txt_nombreMascota.setBorder(null);
+        txt_nombreMascota.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_nombreMascota.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_nombreMascotaKeyTyped(evt);
@@ -143,7 +149,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel6.setText("Nombre dueño");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 285, -1, -1));
 
-        txt_rut.setBorder(null);
+        txt_rut.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_rut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_rutKeyTyped(evt);
@@ -156,7 +163,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel7.setText("Dirección");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 390, -1, -1));
 
-        txt_dueno.setBorder(null);
+        txt_dueno.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_dueno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_duenoKeyTyped(evt);
@@ -169,7 +177,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel8.setText("Rut Dueño");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 338, -1, -1));
 
-        txt_telefono.setBorder(null);
+        txt_telefono.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_telefonoKeyTyped(evt);
@@ -182,7 +191,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel9.setText("Teléfono");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 442, -1, -1));
 
-        txt_direccion.setBorder(null);
+        txt_direccion.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_direccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_direccionKeyTyped(evt);
@@ -195,7 +205,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel10.setText("Nombre Mascota");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 137, -1, -1));
 
-        txt_color.setBorder(null);
+        txt_color.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_color.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_colorKeyTyped(evt);
@@ -532,29 +543,41 @@ public class Agregar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese raza o tipo", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             if (txt_nombreMascota.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(null, "Ingrese nombre de su mascota", "Error", JOptionPane.WARNING_MESSAGE);
+                txt_nombreMascota.setBorder(BorderFactory.createLineBorder(Color.red));
+                txt_nombreMascota.requestFocus();
             } else {
-
+                txt_nombreMascota.setBorder(BorderFactory.createLineBorder(Color.green));
                 if (txt_color.getText().trim().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Ingrese color de su mascota", "Error", JOptionPane.WARNING_MESSAGE);
+                    txt_color.setBorder(BorderFactory.createLineBorder(Color.red));
+                    txt_color.requestFocus();
                 } else {
+                    txt_color.setBorder(BorderFactory.createLineBorder(Color.green));
                     if (date_nacimiento.getDate() == null) {
-                        JOptionPane.showMessageDialog(null, "Ingrese una fecha", "Error", JOptionPane.WARNING_MESSAGE);
+                        date_nacimiento.setBorder(BorderFactory.createLineBorder(Color.red));
+                        date_nacimiento.requestFocus();
                     } else {
+                        date_nacimiento.setBorder(BorderFactory.createLineBorder(Color.green));
                         if (txt_dueno.getText().trim().equals("")) {
-                            JOptionPane.showMessageDialog(null, "Ingrese nombre del dueño", "Error", JOptionPane.WARNING_MESSAGE);
+                            txt_dueno.setBorder(BorderFactory.createLineBorder(Color.red));
+                            txt_dueno.requestFocus();
                         } else {
+                            txt_dueno.setBorder(BorderFactory.createLineBorder(Color.green));
                             if (txt_rut.getText().trim().equals("")) {
-                                JOptionPane.showMessageDialog(null, "Ingrese rut del dueño", "Error", JOptionPane.WARNING_MESSAGE);
+                                txt_rut.setBorder(BorderFactory.createLineBorder(Color.red));
+                                txt_rut.requestFocus();
                             } else {
                                 if (txt_rut.getText().length() < 9 || txt_rut.getText().length() > 10) {
                                     JOptionPane.showMessageDialog(null, "El rut debe tener entre 9 y 10 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
+                                    txt_rut.setBorder(BorderFactory.createLineBorder(Color.red));
+                                    txt_rut.requestFocus();
                                 } else {
 
                                     Pattern pattern = Pattern.compile("^[0-9]+-[0-9kK]{1}$");
                                     Matcher matcher = pattern.matcher(txt_rut.getText());
                                     if (matcher.matches() == false) {
                                         JOptionPane.showMessageDialog(null, "Rut invalido (Formato: 11111111-1)", "Error", JOptionPane.WARNING_MESSAGE);
+                                        txt_rut.setBorder(BorderFactory.createLineBorder(Color.red));
+                                        txt_rut.requestFocus();
                                     } else {
 
                                         String[] stringRut = txt_rut.getText().split("-");
@@ -575,16 +598,23 @@ public class Agregar extends javax.swing.JFrame {
 
                                         if (!verificador.equals(verificadorBueno)) {
                                             JOptionPane.showMessageDialog(null, "El digito verificador del RUT es inválido", "Error", JOptionPane.WARNING_MESSAGE);
+                                            txt_rut.setBorder(BorderFactory.createLineBorder(Color.red));
+                                            txt_rut.requestFocus();
                                         } else {
+                                            txt_rut.setBorder(BorderFactory.createLineBorder(Color.green));
                                             if (txt_direccion.getText().trim().equals("")) {
-                                                JOptionPane.showMessageDialog(null, "Ingrese una dirección", "Error", JOptionPane.WARNING_MESSAGE);
+                                                txt_direccion.setBorder(BorderFactory.createLineBorder(Color.red));
+                                                txt_direccion.requestFocus();
                                             } else {
+                                                txt_direccion.setBorder(BorderFactory.createLineBorder(Color.green));
                                                 if (txt_telefono.getText().length() != 9) {
                                                     JOptionPane.showMessageDialog(null, "El teléfono debe tener una longitud de 9 caracteres numéricos", "Error", JOptionPane.WARNING_MESSAGE);
+                                                    txt_telefono.setBorder(BorderFactory.createLineBorder(Color.red));
+                                                    txt_telefono.requestFocus();
                                                 } else {
                                                     try {
                                                         int telefono = Integer.parseInt(txt_telefono.getText());
-
+                                                        txt_telefono.setBorder(BorderFactory.createLineBorder(Color.green));
                                                         conexion x = new conexion();
                                                         Connection cn = x.getConnection();
                                                         try {
@@ -601,18 +631,29 @@ public class Agregar extends javax.swing.JFrame {
                                                                 mascotasenBD++;
                                                             }
                                                             if (mascotasenBD >= 3) {
-                                                                JOptionPane.showMessageDialog(null, "El RUT ingresado supera el máximo de máscotas permitidas", "SQL!", JOptionPane.ERROR_MESSAGE);
+                                                                JOptionPane.showMessageDialog(null, "El RUT ingresado supera el máximo de mascotas permitidas", "SQL!", JOptionPane.ERROR_MESSAGE);
                                                             } else {
                                                                 String fecha = (anio + "-" + mes + "-" + dia);
-                                                                i = st.executeUpdate("insert into mydb.MASCOTA(nombre,tipo,raza,color,fechaNacimiento,nombreDueno,rutDueno,direccion,telefono,perdido) values('" + txt_nombreMascota.getText() + "','" + combo_tipo.getSelectedItem() + "','" + combo_raza.getSelectedItem() + "','" + txt_nombreMascota.getText() + "','" + fecha + "','" + txt_dueno.getText() + "','" + txt_rut.getText()
+                                                                i = st.executeUpdate("insert into mydb.MASCOTA(nombre,tipo,raza,color,fechaNacimiento,nombreDueno,rutDueno,direccion,telefono,perdido,ultimaUbicacion) values('" + txt_nombreMascota.getText() + "','" + combo_tipo.getSelectedItem() + "','" + combo_raza.getSelectedItem() + "','" + txt_nombreMascota.getText() + "','" + fecha + "','" + txt_dueno.getText() + "','" + txt_rut.getText()
                                                                         + "','" + txt_direccion.getText()
                                                                         + "'," + telefono
-                                                                        + ",FALSE)"
+                                                                        + ",FALSE,'Sin ubicacion')"
                                                                 );
 
                                                                 if (i != 0) {
+                                                                    rs = st.executeQuery("select MAX(idMascota) from mydb.MASCOTA");
+                                                                    String idInsertado = "";
+                                                                    if (rs.next()) {
+                                                                        idInsertado = rs.getString(1);
+                                                                    }
                                                                     limpiar();
                                                                     JOptionPane.showMessageDialog(null, "Agregado", "SQL!", JOptionPane.INFORMATION_MESSAGE);
+                                                                    ByteArrayOutputStream qrcode = QRCode.from("www.pagina.cl/?id=" + idInsertado).withSize(500, 500).to(ImageType.JPG).stream();
+                                                                    ImageIcon qr = new ImageIcon(qrcode.toByteArray());
+
+                                                                    QR p = new QR(qr);
+                                                                    p.setVisible(true);
+                                                                    this.setVisible(false);
                                                                 }
                                                             }
                                                         } catch (SQLException ex) {
@@ -621,6 +662,8 @@ public class Agregar extends javax.swing.JFrame {
                                                         }
                                                     } catch (NumberFormatException ex) {
                                                         JOptionPane.showMessageDialog(null, "El numero de teléfono no es válido", "Error", JOptionPane.WARNING_MESSAGE);
+                                                        txt_telefono.setBorder(BorderFactory.createLineBorder(Color.red));
+                                                        txt_telefono.requestFocus();
                                                     }
 
                                                 }

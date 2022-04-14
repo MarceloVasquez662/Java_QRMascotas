@@ -56,7 +56,7 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="fe" green="d2" red="be" type="rgb"/>
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -181,8 +181,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_nombreMascota">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -219,8 +219,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_rut">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -250,8 +250,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_dueno">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -281,8 +281,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_telefono">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -312,8 +312,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_direccion">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -343,8 +343,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_color">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="BorderFactory.createLineBorder(Color.black&#xd;&#xa;)" type="code"/>
             </Property>
           </Properties>
           <Events>

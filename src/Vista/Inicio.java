@@ -5,10 +5,10 @@
 package Vista;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
-import java.sql.Statement;
 import qrmascota.conexion;
-import sun.net.www.content.audio.x_aiff;
 
 /**
  *
@@ -52,6 +52,8 @@ public class Inicio extends javax.swing.JFrame {
         btn_listado = new javax.swing.JLabel();
         panel_buscarHogar = new javax.swing.JPanel();
         btn_buscarHogar = new javax.swing.JLabel();
+        panel_recuperarQR = new javax.swing.JPanel();
+        btn_recuperarQR = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -132,6 +134,12 @@ public class Inicio extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_agregarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_agregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_agregarMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout panel_agregarLayout = new javax.swing.GroupLayout(panel_agregar);
@@ -163,11 +171,17 @@ public class Inicio extends javax.swing.JFrame {
         btn_reportar.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
         btn_reportar.setForeground(new java.awt.Color(255, 255, 255));
         btn_reportar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_reportar.setText("Reportar mi Máscota");
+        btn_reportar.setText("Reportar mi Mascota");
         btn_reportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_reportar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_reportarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_reportarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_reportarMouseExited(evt);
             }
         });
 
@@ -206,6 +220,12 @@ public class Inicio extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_listadoMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_listadoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_listadoMouseExited(evt);
+            }
         });
 
         javax.swing.GroupLayout panel_listadoLayout = new javax.swing.GroupLayout(panel_listado);
@@ -238,6 +258,17 @@ public class Inicio extends javax.swing.JFrame {
         btn_buscarHogar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_buscarHogar.setText("Máscota abandonada? Buscale un hogar!");
         btn_buscarHogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscarHogar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_buscarHogarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_buscarHogarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_buscarHogarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_buscarHogarLayout = new javax.swing.GroupLayout(panel_buscarHogar);
         panel_buscarHogar.setLayout(panel_buscarHogarLayout);
@@ -260,7 +291,49 @@ public class Inicio extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel2.add(panel_buscarHogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 300, 35));
+        jPanel2.add(panel_buscarHogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 300, 35));
+
+        panel_recuperarQR.setBackground(new java.awt.Color(51, 51, 51));
+
+        btn_recuperarQR.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
+        btn_recuperarQR.setForeground(new java.awt.Color(255, 255, 255));
+        btn_recuperarQR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_recuperarQR.setText("Recuperar QR");
+        btn_recuperarQR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_recuperarQR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_recuperarQRMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_recuperarQRMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_recuperarQRMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_recuperarQRLayout = new javax.swing.GroupLayout(panel_recuperarQR);
+        panel_recuperarQR.setLayout(panel_recuperarQRLayout);
+        panel_recuperarQRLayout.setHorizontalGroup(
+            panel_recuperarQRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(panel_recuperarQRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_recuperarQRLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btn_recuperarQR, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        panel_recuperarQRLayout.setVerticalGroup(
+            panel_recuperarQRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+            .addGroup(panel_recuperarQRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_recuperarQRLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btn_recuperarQR, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel2.add(panel_recuperarQR, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 300, 35));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 570));
 
@@ -323,6 +396,70 @@ public class Inicio extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_listadoMouseClicked
 
+    private void btn_buscarHogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_buscarHogarMouseClicked
+        // TODO add your handling code here:
+        BuscarHogar x = new BuscarHogar();
+        x.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_buscarHogarMouseClicked
+
+    private void btn_recuperarQRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_recuperarQRMouseClicked
+        // TODO add your handling code here:
+        RecuperarQR x = new RecuperarQR();
+        x.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_recuperarQRMouseClicked
+
+    private void btn_agregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarMouseEntered
+        // TODO add your handling code here:
+        btn_agregar.setFont(new Font("Candara", Font.BOLD, 14));
+    }//GEN-LAST:event_btn_agregarMouseEntered
+
+    private void btn_agregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarMouseExited
+        // TODO add your handling code here:
+        btn_agregar.setFont(new Font("Candara", Font.BOLD, 12));
+    }//GEN-LAST:event_btn_agregarMouseExited
+
+    private void btn_recuperarQRMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_recuperarQRMouseEntered
+        // TODO add your handling code here:
+        btn_recuperarQR.setFont(new Font("Candara", Font.BOLD, 14));
+    }//GEN-LAST:event_btn_recuperarQRMouseEntered
+
+    private void btn_recuperarQRMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_recuperarQRMouseExited
+        // TODO add your handling code here:
+        btn_recuperarQR.setFont(new Font("Candara", Font.BOLD, 12));
+    }//GEN-LAST:event_btn_recuperarQRMouseExited
+
+    private void btn_buscarHogarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_buscarHogarMouseEntered
+        // TODO add your handling code here:
+        btn_buscarHogar.setFont(new Font("Candara", Font.BOLD, 14));
+    }//GEN-LAST:event_btn_buscarHogarMouseEntered
+
+    private void btn_buscarHogarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_buscarHogarMouseExited
+        // TODO add your handling code here:
+        btn_buscarHogar.setFont(new Font("Candara", Font.BOLD, 12));
+    }//GEN-LAST:event_btn_buscarHogarMouseExited
+
+    private void btn_reportarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reportarMouseEntered
+        // TODO add your handling code here:
+        btn_reportar.setFont(new Font("Candara", Font.BOLD, 14));
+    }//GEN-LAST:event_btn_reportarMouseEntered
+
+    private void btn_reportarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reportarMouseExited
+        // TODO add your handling code here:
+        btn_reportar.setFont(new Font("Candara", Font.BOLD, 12));
+    }//GEN-LAST:event_btn_reportarMouseExited
+
+    private void btn_listadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listadoMouseEntered
+        // TODO add your handling code here:
+        btn_listado.setFont(new Font("Candara", Font.BOLD, 14));
+    }//GEN-LAST:event_btn_listadoMouseEntered
+
+    private void btn_listadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_listadoMouseExited
+        // TODO add your handling code here:
+        btn_listado.setFont(new Font("Candara", Font.BOLD, 12));
+    }//GEN-LAST:event_btn_listadoMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -363,6 +500,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel btn_buscarHogar;
     private javax.swing.JLabel btn_cerrar;
     private javax.swing.JLabel btn_listado;
+    private javax.swing.JLabel btn_recuperarQR;
     private javax.swing.JLabel btn_reportar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -373,6 +511,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel panel_buscarHogar;
     private javax.swing.JPanel panel_cerrar;
     private javax.swing.JPanel panel_listado;
+    private javax.swing.JPanel panel_recuperarQR;
     private javax.swing.JPanel panel_reportar;
     // End of variables declaration//GEN-END:variables
 }
