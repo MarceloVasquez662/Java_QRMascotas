@@ -34,7 +34,7 @@ public class BuscarHogar extends javax.swing.JFrame {
             Statement st = cn.createStatement();
             ResultSet rs;
 
-            rs = st.executeQuery("select nombreDueno,gato,perro,conejo,contacto from mydb.HOGARES where gato=TRUE or perro=TRUE or conejo=TRUE");
+            rs = st.executeQuery("select nombreDueno,gato,perro,conejo,contacto from HOGARES where gato=TRUE or perro=TRUE or conejo=TRUE");
 
             DefaultTableModel modeloTabla = (DefaultTableModel) table_hogares.getModel();
             Object filas[] = new Object[5];

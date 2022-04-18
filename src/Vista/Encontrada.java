@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import qrmascota.conexion;
 
@@ -176,7 +177,7 @@ public class Encontrada extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +188,7 @@ public class Encontrada extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 570));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
@@ -205,7 +206,8 @@ public class Encontrada extends javax.swing.JFrame {
         jPanel3.add(combo_mascotasPerdidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 170, 30));
 
         txt_rut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_rut.setBorder(null);
+        txt_rut.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_rut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_rut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -244,7 +246,7 @@ public class Encontrada extends javax.swing.JFrame {
         btn_encontrada.setBackground(new java.awt.Color(204, 204, 0));
         btn_encontrada.setForeground(new java.awt.Color(0, 0, 0));
         btn_encontrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_encontrada.setText("Encontrada :)");
+        btn_encontrada.setText("Encontrado");
         btn_encontrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_encontrada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -322,7 +324,7 @@ public class Encontrada extends javax.swing.JFrame {
                     Connection cn = x.getConnection();
                     Statement st = cn.createStatement();
                     ResultSet rs;
-                    rs = st.executeQuery("select idMASCOTA,nombre from mydb.MASCOTA where rutDueno='" + txt_rut.getText() + "' and perdido=TRUE");
+                    rs = st.executeQuery("select idMASCOTA,nombre from MASCOTA where rutDueno='" + txt_rut.getText() + "' and perdido=TRUE");
 
                     combo_mascotasPerdidas.removeAllItems();
 
@@ -332,7 +334,7 @@ public class Encontrada extends javax.swing.JFrame {
                         btn_encontrada.setVisible(true);
 
                         combo_mascotasPerdidas.addItem("Seleccione su mascota");
-                        rs.beforeFirst();
+                        combo_mascotasPerdidas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         while (rs.next()) {
                             combo_mascotasPerdidas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         }
@@ -358,8 +360,8 @@ public class Encontrada extends javax.swing.JFrame {
                 conexion x = new conexion();
                 Connection cn = x.getConnection();
                 Statement st = cn.createStatement();
-                int i = st.executeUpdate("update mydb.MASCOTA set perdido=FALSE where idMASCOTA=" + idMascota + "");
-                JOptionPane.showMessageDialog(null, "Esto es una buena notícia! <3", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                int i = st.executeUpdate("update MASCOTA set perdido=FALSE where idMASCOTA=" + idMascota + "");
+                JOptionPane.showMessageDialog(null, "Esto es una buena notícia!", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 combo_mascotasPerdidas.setVisible(false);
                 panel_darBaja.setVisible(false);
                 txt_rut.setText("");

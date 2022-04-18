@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import net.glxn.qrgen.QRCode;
@@ -174,7 +175,7 @@ public class RecuperarQR extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recuperarqr.jpg"))); // NOI18N
@@ -194,7 +195,7 @@ public class RecuperarQR extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 570));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
@@ -210,7 +211,8 @@ public class RecuperarQR extends javax.swing.JFrame {
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 120, 30));
 
         txt_rut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_rut.setBorder(null);
+        txt_rut.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_rut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_rut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -328,23 +330,24 @@ public class RecuperarQR extends javax.swing.JFrame {
                     conexion x = new conexion();
                     Connection cn = x.getConnection();
                     Statement st = cn.createStatement();
-                    ResultSet rs;
-                    rs = st.executeQuery("select idMASCOTA, nombre from mydb.MASCOTA where rutDueno='" + txt_rut.getText() + "'");
+                    ResultSet rs = null;
+                    rs = st.executeQuery("select idMASCOTA, nombre from MASCOTA where rutDueno='" + txt_rut.getText() + "'");
 
                     combo_mascotas.removeAllItems();
-
+                    combo_mascotas.setVisible(true);
+                    panel_darBaja.setVisible(true);
+                    btn_recuperar.setVisible(true);
+                    combo_mascotas.addItem("Seleccione su mascota");
                     if (rs.next()) {
-                        combo_mascotas.setVisible(true);
-                        panel_darBaja.setVisible(true);
-                        btn_recuperar.setVisible(true);
-
-                        combo_mascotas.addItem("Seleccione su mascota");
-                        rs.beforeFirst();
+                        combo_mascotas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         while (rs.next()) {
                             combo_mascotas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "El RUT ingresado no presenta mascotas en el sistema", "Error", JOptionPane.WARNING_MESSAGE);
+                        panel_darBaja.setVisible(false);
+                        btn_recuperar.setVisible(false);
+                        combo_mascotas.setVisible(false);
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -362,7 +365,7 @@ public class RecuperarQR extends javax.swing.JFrame {
             String[] mascota = combo_mascotas.getSelectedItem().toString().split("-");
             int idMascota = Integer.parseInt(mascota[0]);
 
-            ByteArrayOutputStream qrcode = QRCode.from("www.pagina.cl/?id=" + idMascota).withSize(500, 500).to(ImageType.JPG).stream();
+            ByteArrayOutputStream qrcode = QRCode.from("mighty-castle-15750.herokuapp.com/?id=" + idMascota).withSize(500, 500).to(ImageType.JPG).stream();
             ImageIcon qr = new ImageIcon(qrcode.toByteArray());
 
             QR p = new QR(qr);

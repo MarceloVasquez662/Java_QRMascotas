@@ -185,7 +185,7 @@ public class Reportar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("<html><div style=\"text-align:center\"><span>Sentimos que tú <br> mascota esté <br> pérdida :(</span></div></html>");
+        jLabel2.setText("<html><div style=\"text-align:center\"><span>Sentimos que tú <br> mascota esté <br> pérdida </span></div></html>");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -360,7 +360,7 @@ public class Reportar extends javax.swing.JFrame {
                     Connection cn = x.getConnection();
                     Statement st = cn.createStatement();
                     ResultSet rs;
-                    rs = st.executeQuery("select idMASCOTA,nombre from mydb.MASCOTA where rutDueno='" + txt_rut.getText() + "' and perdido=FALSE");
+                    rs = st.executeQuery("select idMASCOTA,nombre from MASCOTA where rutDueno='" + txt_rut.getText() + "' and perdido=FALSE");
 
                     combo_mascotas.removeAllItems();
 
@@ -370,12 +370,12 @@ public class Reportar extends javax.swing.JFrame {
                         btn_reportar.setVisible(true);
 
                         combo_mascotas.addItem("Seleccione una máscota");
-                        rs.beforeFirst();
+                        combo_mascotas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         while (rs.next()) {
                             combo_mascotas.addItem(rs.getString(1) + "-" + rs.getString(2));
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "El RUT ingresado no presenta mascotas perdidas en el sistema", "Error", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "El RUT ingresado no presenta mascotas en el sistema", "Error", JOptionPane.WARNING_MESSAGE);
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -396,8 +396,8 @@ public class Reportar extends javax.swing.JFrame {
                 conexion x = new conexion();
                 Connection cn = x.getConnection();
                 Statement st = cn.createStatement();
-                int i = st.executeUpdate("update mydb.MASCOTA set perdido=TRUE where idMASCOTA=" + idMascota + "");
-                JOptionPane.showMessageDialog(null, "Lamentamos tu pérdida :( tu mascota esta en la lista de mascotas perdidas", ":(", JOptionPane.INFORMATION_MESSAGE);
+                int i = st.executeUpdate("update MASCOTA set perdido=TRUE where idMASCOTA=" + idMascota + "");
+                JOptionPane.showMessageDialog(null, "Lamentamos tu pérdida. Tu mascota esta en la lista de mascotas perdidas", ":(", JOptionPane.INFORMATION_MESSAGE);
                 combo_mascotas.setVisible(false);
                 panel_reportar.setVisible(false);
                 txt_rut.setText("");

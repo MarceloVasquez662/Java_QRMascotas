@@ -26,8 +26,6 @@ public class Inicio extends javax.swing.JFrame {
         this.setTitle("QR Mascotas");
         this.setLocationRelativeTo(null);
 
-        conexion x = new conexion();
-        Connection cn = x.getConnection();
     }
 
     /**
@@ -129,7 +127,7 @@ public class Inicio extends javax.swing.JFrame {
         btn_agregar.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
         btn_agregar.setForeground(new java.awt.Color(255, 255, 255));
         btn_agregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_agregar.setText("Agregar Máscota");
+        btn_agregar.setText("Agregar Mascota");
         btn_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_agregarMouseClicked(evt);
@@ -214,7 +212,7 @@ public class Inicio extends javax.swing.JFrame {
         btn_listado.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
         btn_listado.setForeground(new java.awt.Color(255, 255, 255));
         btn_listado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_listado.setText("Listado de Máscotas perdidas");
+        btn_listado.setText("Listado de Mascotas perdidas");
         btn_listado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_listado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -256,7 +254,7 @@ public class Inicio extends javax.swing.JFrame {
         btn_buscarHogar.setFont(new java.awt.Font("Candara", 1, 12)); // NOI18N
         btn_buscarHogar.setForeground(new java.awt.Color(255, 255, 255));
         btn_buscarHogar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_buscarHogar.setText("Máscota abandonada? Buscale un hogar!");
+        btn_buscarHogar.setText("Mascota abandonada? Buscale un hogar!");
         btn_buscarHogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_buscarHogar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

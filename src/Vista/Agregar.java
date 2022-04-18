@@ -98,7 +98,7 @@ public class Agregar extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 570));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
@@ -625,7 +625,7 @@ public class Agregar extends javax.swing.JFrame {
                                                             mes = date_nacimiento.getCalendar().get(Calendar.MONTH) + 1;
                                                             anio = date_nacimiento.getCalendar().get(Calendar.YEAR);
 
-                                                            ResultSet rs = st.executeQuery("select * from mydb.MASCOTA where rutDueno='" + txt_rut.getText() + "'");
+                                                            ResultSet rs = st.executeQuery("select * from MASCOTA where rutDueno='" + txt_rut.getText() + "'");
                                                             int mascotasenBD = 0;
                                                             while (rs.next()) {
                                                                 mascotasenBD++;
@@ -634,21 +634,21 @@ public class Agregar extends javax.swing.JFrame {
                                                                 JOptionPane.showMessageDialog(null, "El RUT ingresado supera el máximo de mascotas permitidas", "SQL!", JOptionPane.ERROR_MESSAGE);
                                                             } else {
                                                                 String fecha = (anio + "-" + mes + "-" + dia);
-                                                                i = st.executeUpdate("insert into mydb.MASCOTA(nombre,tipo,raza,color,fechaNacimiento,nombreDueno,rutDueno,direccion,telefono,perdido,ultimaUbicacion) values('" + txt_nombreMascota.getText() + "','" + combo_tipo.getSelectedItem() + "','" + combo_raza.getSelectedItem() + "','" + txt_nombreMascota.getText() + "','" + fecha + "','" + txt_dueno.getText() + "','" + txt_rut.getText()
+                                                                i = st.executeUpdate("insert into MASCOTA(nombre,tipo,raza,color,fechaNacimiento,nombreDueno,rutDueno,direccion,telefono,perdido,ultimaUbicacion) values('" + txt_nombreMascota.getText() + "','" + combo_tipo.getSelectedItem() + "','" + combo_raza.getSelectedItem() + "','" + txt_color.getText() + "','" + fecha + "','" + txt_dueno.getText() + "','" + txt_rut.getText()
                                                                         + "','" + txt_direccion.getText()
                                                                         + "'," + telefono
                                                                         + ",FALSE,'Sin ubicacion')"
                                                                 );
 
                                                                 if (i != 0) {
-                                                                    rs = st.executeQuery("select MAX(idMascota) from mydb.MASCOTA");
+                                                                    rs = st.executeQuery("select MAX(idMascota) from MASCOTA");
                                                                     String idInsertado = "";
                                                                     if (rs.next()) {
                                                                         idInsertado = rs.getString(1);
                                                                     }
                                                                     limpiar();
                                                                     JOptionPane.showMessageDialog(null, "Agregado", "SQL!", JOptionPane.INFORMATION_MESSAGE);
-                                                                    ByteArrayOutputStream qrcode = QRCode.from("www.pagina.cl/?id=" + idInsertado).withSize(500, 500).to(ImageType.JPG).stream();
+                                                                    ByteArrayOutputStream qrcode = QRCode.from("mighty-castle-15750.herokuapp.com/?id=" + idInsertado).withSize(500, 500).to(ImageType.JPG).stream();
                                                                     ImageIcon qr = new ImageIcon(qrcode.toByteArray());
 
                                                                     QR p = new QR(qr);

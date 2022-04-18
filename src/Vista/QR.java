@@ -281,9 +281,9 @@ public class QR extends javax.swing.JFrame {
         try {
             Path path = Paths.get("");
             String directorio = path.toAbsolutePath().toString();
-            ImageIO.write(imagen, "jpg", new File(directorio + "\\src\\Imagenes\\qr.png"));
+            ImageIO.write(imagen, "jpg", new File(".\\qr.png"));
 
-            String url = directorio + "\\src\\Imagenes\\qr.png";
+            String url = ".\\qr.png";
             ProcessBuilder p = new ProcessBuilder();
             p.command("cmd.exe", "/c", url);
             p.start();

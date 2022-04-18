@@ -320,7 +320,7 @@ public class BajarHogar extends javax.swing.JFrame {
                     Connection cn = x.getConnection();
                     Statement st = cn.createStatement();
                     ResultSet rs;
-                    rs = st.executeQuery("select idHOGARES,direccion from mydb.HOGARES where rutDueno='" + txt_rut.getText() + "'");
+                    rs = st.executeQuery("select idHOGARES,direccion from HOGARES where rutDueno='" + txt_rut.getText() + "'");
 
                     combo_hogares.removeAllItems();
 
@@ -330,10 +330,8 @@ public class BajarHogar extends javax.swing.JFrame {
                         btn_darBaja.setVisible(true);
 
                         combo_hogares.addItem("Seleccione su dirección");
-                        rs.beforeFirst();
-                        while (rs.next()) {
-                            combo_hogares.addItem(rs.getString(1) + "-" + rs.getString(2));
-                        }
+                        combo_hogares.addItem(rs.getString(1) + "-" + rs.getString(2));
+
                     } else {
                         JOptionPane.showMessageDialog(null, "El RUT ingresado no presenta hogares en el sistema", "Error", JOptionPane.WARNING_MESSAGE);
                     }
@@ -356,7 +354,7 @@ public class BajarHogar extends javax.swing.JFrame {
                 conexion x = new conexion();
                 Connection cn = x.getConnection();
                 Statement st = cn.createStatement();
-                int i = st.executeUpdate("delete from mydb.HOGARES where idHOGARES=" + idHogar + "");
+                int i = st.executeUpdate("delete from HOGARES where idHOGARES=" + idHogar + "");
                 JOptionPane.showMessageDialog(null, "En cualquier momento puedes agregar tu hogar nuevamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 combo_hogares.setVisible(false);
                 panel_darBaja.setVisible(false);

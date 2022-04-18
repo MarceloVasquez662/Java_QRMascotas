@@ -23,19 +23,19 @@ public class Listado extends javax.swing.JFrame {
      * Creates new form Listado
      */
     int xMouse, yMouse;
-    
+
     public Listado() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         try {
             conexion x = new conexion();
             Connection cn = x.getConnection();
             Statement st = cn.createStatement();
             ResultSet rs;
-            
-            rs = st.executeQuery("select nombre, nombreDueno,tipo,raza,ultimaUbicacion from mydb.MASCOTA where perdido=TRUE");
-            
+
+            rs = st.executeQuery("select nombre, nombreDueno,tipo,raza,ultimaUbicacion from MASCOTA where perdido=TRUE");
+
             DefaultTableModel modeloTabla = (DefaultTableModel) table_mascotasPerdidas.getModel();
             Object filas[] = new Object[5];
             while (rs.next()) {
@@ -48,7 +48,7 @@ public class Listado extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }
 
     /**
@@ -182,7 +182,7 @@ public class Listado extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 230));
 
-        jPanel3.setBackground(new java.awt.Color(255, 185, 196));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 0));
         jPanel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -287,46 +287,46 @@ public class Listado extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_cerrarMouseClicked
-    
+
     private void btn_inicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseClicked
         // TODO add your handling code here:
         Inicio x = new Inicio();
         x.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_inicioMouseClicked
-    
+
     private void btn_inicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseEntered
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 140, 0));
     }//GEN-LAST:event_btn_inicioMouseEntered
-    
+
     private void btn_inicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_inicioMouseExited
         // TODO add your handling code here:
         panel_inicio.setBackground(new Color(0, 102, 0));
     }//GEN-LAST:event_btn_inicioMouseExited
-    
+
     private void btn_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseEntered
         // TODO add your handling code here:
         panel_cerrar.setBackground(Color.red);
     }//GEN-LAST:event_btn_cerrarMouseEntered
-    
+
     private void btn_cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cerrarMouseExited
         // TODO add your handling code here:
         panel_cerrar.setBackground(new Color(153, 0, 0));
     }//GEN-LAST:event_btn_cerrarMouseExited
-    
+
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
         int x = evt.getXOnScreen(), y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel4MouseDragged
-    
+
     private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
         // TODO add your handling code here:
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel4MousePressed
-    
+
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         Encontrada x = new Encontrada();

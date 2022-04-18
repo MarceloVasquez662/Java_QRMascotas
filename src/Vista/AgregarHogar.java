@@ -175,7 +175,7 @@ public class AgregarHogar extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 30));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -189,7 +189,8 @@ public class AgregarHogar extends javax.swing.JFrame {
         jLabel4.setText("Nombre");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
-        txt_telefono.setBorder(null);
+        txt_telefono.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_telefonoKeyTyped(evt);
@@ -197,17 +198,17 @@ public class AgregarHogar extends javax.swing.JFrame {
         });
         jPanel2.add(txt_telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 200, 35));
 
-        radio_gato.setBackground(new java.awt.Color(255, 204, 204));
+        radio_gato.setBackground(new java.awt.Color(255, 255, 255));
         radio_gato.setForeground(new java.awt.Color(0, 0, 0));
         radio_gato.setText("Gato");
         jPanel2.add(radio_gato, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        radio_perro.setBackground(new java.awt.Color(255, 204, 204));
+        radio_perro.setBackground(new java.awt.Color(255, 255, 255));
         radio_perro.setForeground(new java.awt.Color(0, 0, 0));
         radio_perro.setText("Perro");
         jPanel2.add(radio_perro, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
-        radio_conejo.setBackground(new java.awt.Color(255, 204, 204));
+        radio_conejo.setBackground(new java.awt.Color(255, 255, 255));
         radio_conejo.setForeground(new java.awt.Color(0, 0, 0));
         radio_conejo.setText("Conejo");
         jPanel2.add(radio_conejo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
@@ -217,7 +218,8 @@ public class AgregarHogar extends javax.swing.JFrame {
         jLabel5.setText("Dirección");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        txt_direccion.setBorder(null);
+        txt_direccion.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_direccionActionPerformed(evt);
@@ -265,7 +267,8 @@ public class AgregarHogar extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 300, 35));
 
-        txt_rut.setBorder(null);
+        txt_rut.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_rut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_rutKeyTyped(evt);
@@ -283,7 +286,8 @@ public class AgregarHogar extends javax.swing.JFrame {
         jLabel8.setText("Teléfono");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
-        txt_nombreDueno.setBorder(null);
+        txt_nombreDueno.setBorder(BorderFactory.createLineBorder(Color.black
+        ));
         txt_nombreDueno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_nombreDuenoKeyTyped(evt);
@@ -438,12 +442,12 @@ public class AgregarHogar extends javax.swing.JFrame {
                                         Connection cn = x.getConnection();
                                         Statement st = cn.createStatement();
 
-                                        ResultSet rs = st.executeQuery("select * from mydb.HOGARES where rutDueno='" + txt_rut.getText() + "'");
+                                        ResultSet rs = st.executeQuery("select * from HOGARES where rutDueno='" + txt_rut.getText() + "'");
                                         if (rs.next()) {
                                             JOptionPane.showMessageDialog(null, "El RUT ingresado supera el máximo de hogares permitidos", "SQL!", JOptionPane.ERROR_MESSAGE);
                                         } else {
                                             int i;
-                                            i = st.executeUpdate("insert into mydb.HOGARES (nombreDueno,direccion,gato,perro,conejo,contacto,rutDueno) values('" + txt_nombreDueno.getText() + "','" + txt_direccion.getText() + "'," + gato + " ," + perro + " ," + conejo + " ," + txt_telefono.getText() + " , '" + txt_rut.getText() + "')");
+                                            i = st.executeUpdate("insert into HOGARES (nombreDueno,direccion,gato,perro,conejo,contacto,rutDueno) values('" + txt_nombreDueno.getText() + "','" + txt_direccion.getText() + "'," + gato + " ," + perro + " ," + conejo + " ," + txt_telefono.getText() + " , '" + txt_rut.getText() + "')");
 
                                             if (i != 0) {
                                                 JOptionPane.showMessageDialog(null, "Agregado", "SQL!", JOptionPane.INFORMATION_MESSAGE);

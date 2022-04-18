@@ -7,7 +7,8 @@ package qrmascota;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.time.Clock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,26 +16,29 @@ import javax.swing.JOptionPane;
  * @author Marcelo
  */
 public class conexion {
-    
+
     private static Connection cn;
-    private static final String driver = "com.mysql.jdbc.Driver";
-    private static final String user = "root";
-    private static final String contrasenia = "";
-    private static final String url = "jdbc:mysql://localhost:3306/mydb";
-    
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
+    private static final String user = "UVIpChcjd2";
+    private static final String contrasenia = "O2I8Lsie03";
+    private static final String url = "jdbc:mysql://remotemysql.com:3306/UVIpChcjd2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
+    ;
+
     public conexion() {
         cn = null;
         try {
             Class.forName(driver);
             cn = DriverManager.getConnection(url, user, contrasenia);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Error Clase");
+            System.out.println("conectada");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "La base de datos no esta activa, consulte con el administrador");
-            System.exit(0);
+            JOptionPane.showMessageDialog(null, "La base de datos no esta activa o se supero el limite de conexiones, consulte con el administrador");
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
         }
     }
-    
+
     public Connection getConnection() {
         return cn;
     }
