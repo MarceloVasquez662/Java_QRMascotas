@@ -1,6 +1,6 @@
 ## Nombre del Proyecto
 
-Menu Online / ReactJS
+QR para Mascotas en Java
 
 ## Descripcion
 
