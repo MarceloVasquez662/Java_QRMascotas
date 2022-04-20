@@ -13,7 +13,7 @@ Si desea descargar el programa,  se describen los pasos a seguir para su ejecuci
 
 - Copiamos el repositorio en la dirección deseada (Ejecutamos *https://github.com/MarceloVasquez662/java_qrmascotas.git*)
 - Nos desplazamos dentro del proyecto, en la carpeta *dist* encontraremos el ejecutable en formato .jar donde podremos iniciar el programa.
-- Si desea revisar el codigo, es accedible con algun editor de código. En mi caso se utilizaco Apache Netbeans.
+- Si desea revisar el codigo, es accedible con algun editor de código. En mi caso se utilizo Apache Netbeans.
 
 *Para el proceso es necesario tener instalado Java*
 
